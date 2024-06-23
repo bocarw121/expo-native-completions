@@ -25,8 +25,8 @@ export function registerCompletionProvider({
         const completion = new vscode.CompletionItem(label, completionKind);
         completion.insertText = new vscode.SnippetString(textToInsert);
         completion.documentation = new vscode.MarkdownString(doc);
-        // documentation on hover
-        completion.detail = label;
+
+        // completion.detail = label;
 
         return {
           isIncomplete: false,

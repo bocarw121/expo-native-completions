@@ -1,4 +1,4 @@
-import { registerCompletionProvider } from "../../utils/registerCompletionProvider";
+import { registerCompletionProvider } from "../../utils";
 import {
   asyncFunctionDoc,
   functionDoc,
