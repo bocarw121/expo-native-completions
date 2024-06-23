@@ -1,4 +1,5 @@
 import { registerCompletionProvider } from "../../utils";
+import { registerHoverProvider } from "../../utils/hoverProvider";
 import {
   asyncFunctionDoc,
   functionDoc,
@@ -155,6 +156,23 @@ const swiftOnAppBecomesActive = registerCompletionProvider({
   textToInsert: `OnAppBecomesActive`,
   doc: onAppBecomesActiveDoc,
   triggerWord: "On",
+});
+
+export const swiftHoverProvider = registerHoverProvider("swift", {
+  Function: functionDoc,
+  AsyncFunction: asyncFunctionDoc,
+  Name: nameDoc,
+  Constants: constantsDoc,
+  Property: propertyDoc,
+  Events: eventsDoc,
+  OnCreate: onCreateDoc,
+  OnDestroy: onDestroyDoc,
+  OnStartObserving: onStartObservingDoc,
+  OnStopObserving: onStopObservingDoc,
+  OnAppContextDestroys: onAppContextDestroysDoc,
+  OnAppEntersForeground: onAppEntersForegroundDoc,
+  OnAppEntersBackground: onAppEntersBackgroundDoc,
+  OnAppBecomesActive: onAppBecomesActiveDoc,
 });
 
 export const swiftProviders = [

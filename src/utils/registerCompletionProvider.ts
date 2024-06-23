@@ -19,12 +19,13 @@ export function registerCompletionProvider({
     { language, scheme },
     {
       provideCompletionItems(
-        document: vscode.TextDocument,
-        position: vscode.Position
+        _document: vscode.TextDocument,
+        _position: vscode.Position
       ) {
         const completion = new vscode.CompletionItem(label, completionKind);
         completion.insertText = new vscode.SnippetString(textToInsert);
         completion.documentation = new vscode.MarkdownString(doc);
+        completion.kind = completionKind || vscode.CompletionItemKind.Text;
 
         // completion.detail = label;
 

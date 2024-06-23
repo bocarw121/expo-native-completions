@@ -1,8 +1,8 @@
 import * as vscode from "vscode";
 
 import { isExpoProject } from "./utils";
-import { kotlinProviders } from "./completions/kotlin";
-import { swiftProviders } from "./completions/swift";
+import { kotlinHoverProvider, kotlinProviders } from "./completions/kotlin";
+import { swiftHoverProvider, swiftProviders } from "./completions/swift";
 
 export function activate(context: vscode.ExtensionContext) {
   if (isExpoProject()) {
@@ -21,6 +21,8 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(...kotlinProviders);
     context.subscriptions.push(...swiftProviders);
+    context.subscriptions.push(kotlinHoverProvider);
+    context.subscriptions.push(swiftHoverProvider);
   }
 }
 

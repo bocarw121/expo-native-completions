@@ -1,4 +1,5 @@
 import { registerCompletionProvider } from "../../utils";
+import { registerHoverProvider } from "../../utils/hoverProvider";
 import {
   asyncFunctionDoc,
   functionDoc,
@@ -221,6 +222,29 @@ const kotlinOnActivityDestroys = registerCompletionProvider({
   textToInsert: `OnActivityDestroys`,
   doc: onActivityDestroysDoc,
   triggerWord: "On",
+});
+
+export const kotlinHoverProvider = registerHoverProvider("kotlin", {
+  Function: functionDoc,
+  AsyncFunction: asyncFunctionDoc,
+  Name: nameDoc,
+  Constants: constantsDoc,
+  Property: propertyDoc,
+  Events: eventsDoc,
+  OnCreate: onCreateDoc,
+  OnDestroy: onDestroyDoc,
+  OnStartObserving: onStartObservingDoc,
+  OnStopObserving: onStopObservingDoc,
+  OnAppContextDestroys: onAppContextDestroysDoc,
+  GroupView: groupViewDoc,
+  AddChildView: addChildViewDoc,
+  GetChildCount: getChildCountDoc,
+  GetChildViewAt: getChildViewAtDoc,
+  RemoveChildView: removeChildViewDoc,
+  RemoveChildViewAt: removeChildViewAtDoc,
+  OnActivityEntersForeground: onActivityEntersForegroundDoc,
+  OnActivityEntersBackground: onActivityEntersBackgroundDoc,
+  OnActivityDestroys: onActivityDestroysDoc,
 });
 
 export const kotlinProviders = [
