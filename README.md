@@ -1,71 +1,172 @@
-# expo-native-completions README
-
-This is the README for your extension "expo-native-completions". After writing up a brief description, we recommend including the following sections.
-
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+Sure, I can help you draft a comprehensive README for your code completions project. Below is a structured and detailed README template that you can customize according to your needs:
 
 ---
 
-## Following extension guidelines
+# Expo Native Completions
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+This Visual Studio Code extension provides auto-completion for native modules and functions in Kotlin and Swift for Expo projects. The extension is designed to enhance developer productivity by offering quick and accurate completions along with inline documentation.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+## Features
 
-## Working with Markdown
+- **Auto-Completion**: Provides code suggestions for Kotlin and Swift functions, properties, constants, events, and lifecycle methods.
+- **Inline Documentation**: Displays relevant documentation for each completion to help you understand the usage without leaving the editor.
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+## Installation
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+1. **Prerequisites**:
+   - Visual Studio Code installed on your machine.
+   - A project using Expo with native Kotlin and/or Swift code.
 
-## For more information
+2. **Installation**:
+   - Clone this repository to your local machine.
+   - Open the repository in Visual Studio Code.
+   - Run `npm install` to install necessary dependencies.
+   - Run the `vsce package` command to create a VSIX package.
+   - Install the generated VSIX package in Visual Studio Code via the Extensions view (`View -> Extensions` -> `...` -> `Install from VSIX...`).
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+## Usage
 
-**Enjoy!**
+1. **Enable the Extension**:
+   - Ensure your project is an Expo project.
+   - The extension will activate automatically when you open a Kotlin or Swift file in an Expo project.
+
+2. **Auto-Completion**:
+   - Start typing a trigger word (e.g., `Fu` for Function, `As` for AsyncFunction) to see suggestions.
+   - Select a suggestion to insert the completion into your code.
+
+3. **Inline Documentation**:
+   - Hover over a completion item to see detailed documentation.
+   - The documentation will stay visible as long as you hover over the item.
+
+## Available Completions
+
+The extension provides completions for the following types:
+
+- **Function**
+  - **Trigger Word**: `Fu`
+  - **Documentation**: Defines a synchronous function.
+- **AsyncFunction**
+  - **Trigger Word**: `As`
+  - **Documentation**: Defines an asynchronous function returning a Promise.
+- **Name**
+  - **Trigger Word**: `Na`
+  - **Documentation**: Sets the module name used in JavaScript.
+- **Constants**
+  - **Trigger Word**: `Co`
+  - **Documentation**: Sets constant properties on the module.
+- **Property**
+  - **Trigger Word**: `Pr`
+  - **Documentation**: Defines a property on the JavaScript object.
+- **Events**
+  - **Trigger Word**: `Ev`
+  - **Documentation**: Defines event names for the module.
+- **Lifecycle Methods**:
+  - **Trigger Words**:
+    - `onCreate` (`onCreateDoc`)
+    - `onDestroy` (`onDestroyDoc`)
+    - `onStartObserving` (`onStartObservingDoc`)
+    - `onStopObserving` (`onStopObservingDoc`)
+    - `onAppContextDestroys` (`onAppContextDestroysDoc`)
+    - `onAppEntersForeground` (`onAppEntersForegroundDoc`)
+    - `onAppEntersBackground` (`onAppEntersBackgroundDoc`)
+    - `onAppBecomesActive` (`onAppBecomesActiveDoc`)
+    - `onActivityEntersForeground` (`onActivityEntersForegroundDoc`)
+    - `onActivityEntersBackground` (`onActivityEntersBackgroundDoc`)
+    - `onActivityDestroys` (`onActivityDestroysDoc`)
+
+## Extension Configuration
+
+### Kotlin Providers
+
+```typescript
+import {
+  asyncFunctionDoc,
+  functionDoc,
+  nameDoc,
+  groupViewDoc,
+  addChildViewDoc,
+  getChildCountDoc,
+  getChildViewAtDoc,
+  removeChildViewDoc,
+  removeChildViewAtDoc,
+  propertyDoc,
+  constantsDoc,
+  eventsDoc,
+  onCreateDoc,
+  onDestroyDoc,
+  onStartObservingDoc,
+  onStopObservingDoc,
+  onAppContextDestroysDoc,
+  onActivityEntersForegroundDoc,
+  onActivityEntersBackgroundDoc,
+  onActivityDestroysDoc,
+} from "../documentation";
+
+// Register Kotlin providers
+const kotlinProviders = [
+  registerCompletionProvider({
+    language: "kotlin",
+    label: "Function",
+    scheme: "file",
+    textToInsert: `Function`,
+    doc: functionDoc,
+    triggerWord: "Fu",
+  }),
+  // Additional providers...
+];
+```
+
+### Swift Providers
+
+```typescript
+import {
+  asyncFunctionDoc,
+  functionDoc,
+  nameDoc,
+  constantsDoc,
+  propertyDoc,
+  eventsDoc,
+  onCreateDoc,
+  onDestroyDoc,
+  onStartObservingDoc,
+  onStopObservingDoc,
+  onAppContextDestroysDoc,
+  onAppEntersForegroundDoc,
+  onAppEntersBackgroundDoc,
+  onAppBecomesActiveDoc,
+} from "../documentation";
+
+// Register Swift providers
+const swiftProviders = [
+  registerCompletionProvider({
+    language: "swift",
+    label: "Function",
+    scheme: "file",
+    textToInsert: `Function`,
+    doc: functionDoc,
+    triggerWord: "Fu",
+  }),
+  // Additional providers...
+];
+```
+
+## Contributing
+
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+
+### Steps to Contribute
+
+1. Fork this repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -am 'Add new feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/bocarw121/expo-native-completions#LICENCE) file for details.
+
+--
+
+Feel free to modify the above README to better fit your project's specifics and any additional details you might want to include.
