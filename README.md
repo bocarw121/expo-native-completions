@@ -1,71 +1,90 @@
-# expo-native-completions README
+# Expo Native Completions
 
-This is the README for your extension "expo-native-completions". After writing up a brief description, we recommend including the following sections.
+This Visual Studio Code extension provides auto-completion for native modules and functions in Kotlin and Swift for Expo projects. The extension is designed to enhance developer productivity by offering quick and accurate completions along with inline documentation.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Auto-Completion**: Provides code suggestions for Kotlin and Swift functions, properties, constants, events, and lifecycle methods with more to come
+- **Inline Documentation**: Displays relevant documentation for each completion to help you understand the usage without leaving the editor.
 
-For example if there is an image subfolder under your extension project workspace:
+## Installation
 
-\!\[feature X\]\(images/feature-x.png\)
+1. **Prerequisites**:
+   - Visual Studio Code installed on your machine.
+   - A project using Expo with native Kotlin and/or Swift code.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+2. **Installation**:
+   - Clone this repository to your local machine.
+   - Open the repository in Visual Studio Code.
+   - Run `npm install` to install necessary dependencies.
+   - Run the `vsce package` command to create a VSIX package.
+   - Install the generated VSIX package in Visual Studio Code via the Extensions view (`View -> Extensions` -> `...` -> `Install from VSIX...`).
 
-## Requirements
+## Usage
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+1. **Enable the Extension**:
+   - Ensure your project is an Expo project.
+   - The extension will activate automatically when you open a Kotlin or Swift file in an Expo project.
 
-## Extension Settings
+2. **Auto-Completion**:
+   - Start typing a trigger word (e.g., `Fu` for Function, `As` for AsyncFunction) to see suggestions.
+   - Select a suggestion to insert the completion into your code.
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+3. **Inline Documentation**:
+   - Hover over a completion item to see detailed documentation.
+   - The documentation will stay visible as long as you hover over the item.
 
-For example:
+## Available Completions
 
-This extension contributes the following settings:
+**Note**: The extension includes completions that are available on specific platforms and across both Kotlin and Swift:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- **Function**
+  - **Trigger Word**: `Fu`
+  - **Documentation**: Defines a synchronous function.
+- **AsyncFunction**
+  - **Trigger Word**: `As`
+  - **Documentation**: Defines an asynchronous function returning a Promise.
+- **Name**
+  - **Trigger Word**: `Na`
+  - **Documentation**: Sets the module name used in JavaScript.
+- **Constants**
+  - **Trigger Word**: `Co`
+  - **Documentation**: Sets constant properties on the module.
+- **Property**
+  - **Trigger Word**: `Pr`
+  - **Documentation**: Defines a property on the JavaScript object.
+- **Events**
+  - **Trigger Word**: `Ev`
+  - **Documentation**: Defines event names for the module.
+- **Lifecycle Methods**:
+  - **Trigger Words**:
+    - `onCreate` (`onCreateDoc`)
+    - `onDestroy` (`onDestroyDoc`)
+    - `onStartObserving` (`onStartObservingDoc`)
+    - `onStopObserving` (`onStopObservingDoc`)
+    - `onAppContextDestroys` (`onAppContextDestroysDoc`)
+    - `onAppEntersForeground` (`onAppEntersForegroundDoc`)
+    - `onAppEntersBackground` (`onAppEntersBackgroundDoc`)
+    - `onAppBecomesActive` (`onAppBecomesActiveDoc`)
+    - `onActivityEntersForeground` (`onActivityEntersForegroundDoc`)
+    - `onActivityEntersBackground` (`onActivityEntersBackgroundDoc`)
+    - `onActivityDestroys` (`onActivityDestroysDoc`)
 
-## Known Issues
+## Contributing
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
-## Release Notes
+### Steps to Contribute
 
-Users appreciate release notes as you update your extension.
+1. Fork this repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -am 'Add new feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Open a pull request.
 
-### 1.0.0
+## License
 
-Initial release of ...
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/bocarw121/expo-native-completions/blob/main/LICENCE) file for details.
 
-### 1.0.1
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
