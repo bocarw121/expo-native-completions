@@ -1,17 +1,25 @@
-import * as vscode from "vscode";
-import * as path from "path";
 import * as fs from "fs";
+import * as path from "path";
 
 export function isExpoProject(): boolean {
-  const workspaceFolders = vscode.workspace.workspaceFolders;
-  if (!workspaceFolders) {
-    return false;
-  }
-  for (const folder of workspaceFolders) {
-    const appJsonPath = path.join(folder.uri.fsPath, "app.json");
-    if (fs.existsSync(appJsonPath)) {
+  const rootDir = path.resolve("."); // Get the root directory
+
+  const appJsonPath = path.join(rootDir, "app.json");
+  const packageJsonPath = path.join(rootDir, "package.json");
+
+  if (fs.existsSync(packageJsonPath)) {
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+    if (
+      packageJson.dependencies &&
+      packageJson.dependencies["expo-modules-core"]
+    ) {
       return true;
     }
   }
+
+  if (fs.existsSync(appJsonPath)) {
+    return true;
+  }
+
   return false;
 }

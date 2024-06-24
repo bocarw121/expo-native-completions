@@ -1,5 +1,5 @@
-import { registerCompletionProvider } from "../../utils";
-import { registerHoverProvider } from "../../utils/hoverProvider";
+import { registerCompletionProvider, registerHoverProvider } from "../../utils";
+
 import {
   asyncFunctionDoc,
   functionDoc,
@@ -15,6 +15,8 @@ import {
   onAppEntersForegroundDoc,
   onAppEntersBackgroundDoc,
   onAppBecomesActiveDoc,
+  viewDoc,
+  propDoc,
 } from "../documentation";
 
 // Constants
@@ -158,6 +160,26 @@ const swiftOnAppBecomesActive = registerCompletionProvider({
   triggerWord: "On",
 });
 
+// View
+const swiftView = registerCompletionProvider({
+  language: "swift",
+  label: "View",
+  scheme: "file",
+  textToInsert: `View`,
+  doc: viewDoc,
+  triggerWord: "Vi",
+});
+
+// Prop
+const swiftProp = registerCompletionProvider({
+  language: "swift",
+  label: "Prop",
+  scheme: "file",
+  textToInsert: `Prop`,
+  doc: propertyDoc,
+  triggerWord: "Pro",
+});
+
 export const swiftHoverProvider = registerHoverProvider("swift", {
   Function: functionDoc,
   AsyncFunction: asyncFunctionDoc,
@@ -173,6 +195,8 @@ export const swiftHoverProvider = registerHoverProvider("swift", {
   OnAppEntersForeground: onAppEntersForegroundDoc,
   OnAppEntersBackground: onAppEntersBackgroundDoc,
   OnAppBecomesActive: onAppBecomesActiveDoc,
+  View: viewDoc,
+  Prop: propDoc,
 });
 
 export const swiftProviders = [
@@ -190,4 +214,6 @@ export const swiftProviders = [
   swiftOnAppEntersForeground,
   swiftOnAppEntersBackground,
   swiftOnAppBecomesActive,
+  swiftView,
+  swiftProp,
 ];

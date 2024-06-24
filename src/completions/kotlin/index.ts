@@ -1,5 +1,5 @@
-import { registerCompletionProvider } from "../../utils";
-import { registerHoverProvider } from "../../utils/hoverProvider";
+import { registerCompletionProvider, registerHoverProvider } from "../../utils";
+
 import {
   asyncFunctionDoc,
   functionDoc,
@@ -21,6 +21,8 @@ import {
   onActivityEntersForegroundDoc,
   onActivityEntersBackgroundDoc,
   onActivityDestroysDoc,
+  viewDoc,
+  propDoc,
 } from "../documentation";
 
 // Constants
@@ -224,6 +226,26 @@ const kotlinOnActivityDestroys = registerCompletionProvider({
   triggerWord: "On",
 });
 
+// View
+const kotlinView = registerCompletionProvider({
+  language: "kotlin",
+  label: "View",
+  scheme: "file",
+  textToInsert: `View`,
+  doc: viewDoc,
+  triggerWord: "Vi",
+});
+
+// Prop
+const kotlinProp = registerCompletionProvider({
+  language: "kotlin",
+  label: "Prop",
+  scheme: "file",
+  textToInsert: `Prop`,
+  doc: propertyDoc,
+  triggerWord: "Pro",
+});
+
 export const kotlinHoverProvider = registerHoverProvider("kotlin", {
   Function: functionDoc,
   AsyncFunction: asyncFunctionDoc,
@@ -245,6 +267,8 @@ export const kotlinHoverProvider = registerHoverProvider("kotlin", {
   OnActivityEntersForeground: onActivityEntersForegroundDoc,
   OnActivityEntersBackground: onActivityEntersBackgroundDoc,
   OnActivityDestroys: onActivityDestroysDoc,
+  View: viewDoc,
+  Prop: propDoc,
 });
 
 export const kotlinProviders = [
@@ -268,4 +292,6 @@ export const kotlinProviders = [
   kotlinOnActivityEntersForeground,
   kotlinOnActivityEntersBackground,
   kotlinOnActivityDestroys,
+  kotlinView,
+  kotlinProp,
 ];

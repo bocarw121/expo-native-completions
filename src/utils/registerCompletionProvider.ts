@@ -3,8 +3,8 @@ import { CompletionProviderConfig } from "../types";
 
 /**
  * Registers a completion provider for a specific language and scheme.
- * @param config Configuration object for the completion provider.
- * @returns A disposable object that can be used to unregister the provider.
+ * @param {CompletionProviderConfig} config - The configuration object for the completion provider.
+ * @returns {vscode.Disposable} - A disposable object that can be used to unregister the completion provider.
  */
 export function registerCompletionProvider({
   language,

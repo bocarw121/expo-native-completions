@@ -62,15 +62,16 @@ See the [Argument types](https://docs.expo.dev/modules/module-api/#argument-type
 
 
 
-\`\`\`Swift
+### Swift
+\`\`\`swift
 Function("syncFunction") { (message: String) in
   return message
 }
 \`\`\`
 
 
-
-\`\`\`Kotlin
+### Kotlin
+\`\`\`kotlin
 Function("syncFunction") { message: String ->
   return@Function message
 }
@@ -96,6 +97,7 @@ It is recommended to use \`AsyncFunction\` over \`Function\` when it:
 - needs to be run on a different thread, for example, the main UI thread for UI-related tasks
 - is an extensive or long-lasting operation that would block the JavaScript thread which in turn would reduce the responsiveness of the application
 
+### Swift
 \`\`\`swift
 AsyncFunction("asyncFunction") { (message: String) in
   return message
@@ -111,6 +113,7 @@ AsyncFunction("asyncFunction") { (message: String, promise: Promise) in
 
 
 
+### Kotlin
 \`\`\`kotlin
 AsyncFunction("asyncFunction") { message: String ->
   return@AsyncFunction message
@@ -132,6 +135,7 @@ Defines event names that the module can send to JavaScript.
 Note: This component can be used inside of the View block to define callback names. See [View callbacks](https://docs.expo.dev/modules/module-api/#view-callbacks)
 
 
+
 \`\`\`swift
 Events("onCameraReady", "onPictureSaved", "onBarCodeScanned")
 \`\`\`
@@ -151,12 +155,14 @@ To declare a read-only property, you can use a shorthanded syntax that requires 
 - **getter**: \`() => PropertyType\` — The closure to run when the getter for a property was called.
 
 
+### Swift
 \`\`\`swift
 Property("foo") {
   return "bar"
 }
 \`\`\`
 
+### Kotlin
 \`\`\`kotlin
 Property("foo") {
   return@Property "bar"
@@ -169,6 +175,7 @@ In the case of the mutable property, both the getter and the setter closure are 
 
 Example:
 
+### Javascript
 \`\`\`javascript
 const foo = {
   _value: 'bar',
@@ -204,8 +211,6 @@ Defines the listener that is called when the app is about to enter the foregroun
 
 > **Note** This function is not available on Android — you may want to use [\`OnActivityEntersForeground\`](https://docs.expo.dev/modules/module-api/#onactivityentersforeground) instead.
 `;
-
-console.log(onAppEntersForegroundDoc);
 
 // TODO: Note swift only
 export const onAppEntersBackgroundDoc = `iOS only
@@ -376,4 +381,72 @@ RemoveChildViewAt { parent, index ->
   parent.removeViewAt(index)
 }
 \`\`\`
+`;
+
+export const viewDoc = `
+### [View](https://docs.expo.dev/modules/module-api/#view)
+
+Enables the module to be used as a native view. Definition components that are accepted as part of the view definition: [Prop](https://docs.expo.dev/modules/module-api/#prop), [Events](https://docs.expo.dev/modules/module-api/#events), [GroupView](https://docs.expo.dev/modules/module-api/#groupview) and [AsyncFunction](https://docs.expo.dev/modules/module-api/#asyncfunction).
+
+[AsyncFunction](https://docs.expo.dev/modules/module-api/#asyncfunction) in the view definition is added to the React ref of the React component representing the native view. Such async functions automatically receive an instance of the native view as the first argument and run on the UI thread by default.
+
+#### [Arguments](https://docs.expo.dev/modules/module-api/#arguments-2)
+
+- **viewType** — The class of the native view that will be rendered. Note: On Android, the provided class must inherit from the [ExpoView](https://docs.expo.dev/modules/module-api/#expoview), on iOS it's optional. See [Extending ExpoView](https://docs.expo.dev/modules/module-api/#extending--expoview).
+- **definition**: \`() -> ViewDefinition\` — A builder of the view definition.
+
+### Swift
+
+\`\`\` swift
+View(UITextView.self) {
+  Prop("text") { ... }
+
+  AsyncFunction("focus") { (view: UITextView) in
+    view.becomeFirstResponder()
+  }
+}
+\`\`\`
+
+### Kotlin
+
+\`\`\` kotlin
+View(TextView::class) {
+  Prop("text") { ... }
+
+  AsyncFunction("focus") { view: TextView ->
+    view.requestFocus()
+  }
+}
+\`\`\`
+`;
+
+export const propDoc = `
+### [Prop](https://docs.expo.dev/modules/module-api/#prop)
+
+Defines a setter for the view prop of given name.
+
+#### [Arguments](https://docs.expo.dev/modules/module-api/#arguments-3)
+
+- **name**: \`String\` — Name of view prop that you want to define a setter.
+- **setter**: \`(view: ViewType, value: ValueType) -> ()\` — Closure that is invoked when the view rerenders.
+
+This property can only be used within a [ViewManager](https://docs.expo.dev/modules/module-api/#viewmanager) closure.
+
+### Swift
+
+\`\`\` swift
+Prop("background") { (view: UIView, color: UIColor) in
+  view.backgroundColor = color
+}
+\`\`\`
+
+### Kotlin
+
+\`\`\` kotlin
+Prop("background") { view: View, @ColorInt color: Int ->
+  view.setBackgroundColor(color)
+}
+\`\`\`
+
+> **Note** Props of function type (callbacks) are not supported yet.
 `;
