@@ -3,6 +3,7 @@
   "displayName": "Expo Native Completions",
   "description": "Provides code completions for Expo projects in Kotlin and Swift.",
   "version": "0.0.1",
+  "publisher": "Bocar",
   "engines": {
     "vscode": "^1.90.0"
   },
