@@ -6,4 +6,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### v0.0.1
 - Beta release
+
+### v0.0.2
+- Remove is isExpoProject and replace with vscode Activation Events
+- Replace marketplace icon
+
+  
+
+

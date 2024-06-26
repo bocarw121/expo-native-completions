@@ -2,12 +2,12 @@
   "name": "expo-native-completions",
   "displayName": "Expo Native Completions",
   "description": "Provides code completions for Expo projects in Kotlin and Swift.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "Bocar",
   "engines": {
     "vscode": "^1.90.0"
   },
-  "icon": "image/icon.jpg",
+  "icon": "image/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/bocarw121/expo-native-completions.git"
