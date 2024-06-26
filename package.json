@@ -31,8 +31,8 @@
     "commands": []
   },
   "scripts": {
-    "publish": "vsce publish",
-    "prepublish": "pnpm run test",
+    "publish:extension": "vsce publish && pnpm test",
+    "prepublish:extension": "pnpm  test",
     "vscode:prepublish": "pnpm run package",
     "compile": "webpack",
     "watch": "webpack --watch",
