@@ -2,12 +2,12 @@
   "name": "expo-native-completions",
   "displayName": "Expo Native Completions",
   "description": "Provides code completions for Expo projects in Kotlin and Swift.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "Bocar",
   "engines": {
     "vscode": "^1.90.0"
   },
-  "icon": "image/icon.jpg",
+  "icon": "image/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/bocarw121/expo-native-completions.git"
@@ -21,36 +21,18 @@
     "Snippets",
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "workspaceContains:**/app.json",
+    "workspaceContains:**/app.config.js",
+    "workspaceContains:**/app.config.ts"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [],
-    "languages": [
-      {
-        "id": "kotlin",
-        "aliases": [
-          "Kotlin",
-          "kotlin"
-        ],
-        "extensions": [
-          ".kt"
-        ],
-        "configuration": "./language-configuration.json"
-      },
-      {
-        "id": "swift",
-        "aliases": [
-          "Swift",
-          "swift"
-        ],
-        "extensions": [
-          ".swift"
-        ],
-        "configuration": "./language-configuration.json"
-      }
-    ]
+    "commands": []
   },
   "scripts": {
+    "publish": "vsce publish",
+    "prepublish": "pnpm run test",
     "vscode:prepublish": "pnpm run package",
     "compile": "webpack",
     "watch": "webpack --watch",
