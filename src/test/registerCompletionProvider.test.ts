@@ -1,8 +1,6 @@
 import * as assert from "assert";
 import * as vscode from "vscode";
-import { activate } from "../extension";
-import { kotlinProviders, kotlinHoverProvider } from "../completions/kotlin";
-import { swiftProviders, swiftHoverProvider } from "../completions/swift";
+
 import { registerCompletionProvider } from "../utils/registerCompletionProvider";
 import { CompletionProviderConfig } from "../types";
 
